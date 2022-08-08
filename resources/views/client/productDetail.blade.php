@@ -65,7 +65,7 @@
                         </div>
                         <div class="product__tag mb-25">
                             <span>Danh mục:</span>
-                            <span><a href="{{route('client.categoryProducts', $productDetail->category->id)}}">{{$productDetail->category->name}}</a></span>
+                            <span><a href="{{route('client.category', $productDetail->category->id)}}">{{$productDetail->category->name}}</a></span>
                         
                         </div>
                     </div>
@@ -123,25 +123,10 @@
                                     <div class="post-comments-form mb-100">
                                         <div class="post-comments-title mb-30">
                                             <h3>Đánh giá của bạn</h3>
-                                            
                                         </div>
-                                        <form id="contacts-form" class="conatct-post-form" action="#">
+                                        <form id="contacts-form" class="conatct-post-form" action="" method="POST">
+                                            @csrf
                                             <div class="row">
-                                                <div class="col-xl-6 col-lg-6 col-md-6">
-                                                    <div class="contact-icon p-relative contacts-name">
-                                                        <input type="text" placeholder="Họ tên">
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-6 col-md-6">
-                                                    <div class="contact-icon p-relative contacts-name">
-                                                        <input type="email" placeholder="Email">
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-12">
-                                                    <div class="contact-icon p-relative contacts-email">
-                                                        <input type="text" placeholder="Số điện thoại">
-                                                    </div>
-                                                </div>
                                                 <div class="col-xl-12">
                                                     <div class="contact-icon p-relative contacts-message">
                                                         <textarea name="comments" id="comments" cols="30" rows="10" placeholder="Bình luận"></textarea>

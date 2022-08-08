@@ -12,7 +12,7 @@ class ClientController extends Controller
 {
     public function home()
     {
-        $products = Product::select('*')->orderBy('id', 'desc')->with('category')->with('size')->paginate(3);
+        $products = Product::select('*')->orderBy('id', 'desc')->with('category')->with('size')->paginate(12);
         return view('client.home', ['product_list' => $products]);
     }
     public function contact()

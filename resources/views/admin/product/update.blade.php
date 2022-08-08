@@ -3,7 +3,7 @@
 
 @extends('admin.layout.master')
 @section('title', ' Update Product')
-@section('content-title',  ' Update Product')
+@section('content-title',  ' Chỉnh sửa sản phẩm')
 @section('content')
 
 <form action="{{route('admin.product.updateProduct', $product->id)}}" method="post" enctype="multipart/form-data" autocomplete="off">

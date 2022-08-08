@@ -1,9 +1,8 @@
 @extends('admin.layout.master')
-@section('title', 'Product')
-@section('content-title', 'product')
+@section('title', 'Sản phẩm')
+@section('content-title', 'Thêm mới sản phẩm')
 
 @section('content')
-<h1>FORM</h1>
 <form action="{{route('admin.product.productCreate')}}" method="post" enctype="multipart/form-data" autocomplete="off">
   @csrf
   <div class="form-group">

@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
-@section('title', ' List Product')
-@section('content-title',  ' list product')
+@section('title', ' Sản phẩm')
+@section('content-title',  ' Danh sách sản phẩm')
 
 @section('content')
 <h3 class="card-title"><a href="{{route('admin.product.create')}}" class="btn btn-success">Tạo mới</a></h3>

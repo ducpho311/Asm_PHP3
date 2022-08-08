@@ -46,36 +46,38 @@
                 <div class="shop__content-area">
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-grid" role="tabpanel" aria-labelledby="pills-grid-tab">
-                            <div class="row custom-row-10">
-                                <div class="col-xl-4 col-lg-4 ">
-                                    @foreach ($product as $item)  
-                                    <div class="product__wrapper mb-60">
-                                        <div class="product__thumb">
-                                            <a href="{{route('client.product.productDetail', $item->id)}}" class="w-img">
-                                                <img src="{{asset($item->avatar)}}" alt="product-img">
-                                            </a>
-                                            <div class="product__sale">
-                                                <span class="new">new</span>
-                                                <span class="percent">-16%</span>
-                                            </div>
-                                        </div>
-                                        <div class="product__content p-relative">
-                                            <div class="product__content-inner">
-                                                <h4><a href="{{route('client.product.productDetail', $item->id)}}">{{$item->name}}</a></h4>
-                                                <div class="product__price transition-3">   
-                                                    <span>{{$item->promotion}}</span>
-                                                    <span class="old-price">{{$item->price}}</span>
-                                                </div>
-                                            </div>
-                                            <div class="add-cart p-absolute transition-3">
-                                                <a href="#">+ Thêm vào giỏ hàng</a>
-                                            </div>
+                            <div class="row">
+                        @foreach($product as $item)
+                        <div class="col-xl-3 col-lg-3 col-md-4 col sm-6 col-xs-12">
+                            <div class="product__wrapper mb-60">
+                                <div class="product__thumb">
+                                    <a href="{{route('client.product.productDetail', $item->id)}}" class="w-img">
+                                        <img src="{{asset($item->avatar)}}" alt="product-img">
+                                        <img class="product__thumb-2" src="{{asset($item->avatar)}}" alt="product-img">
+                                    </a>
+                                    <div class="product__action transition-3">
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+                                            <i class="fal fa-heart"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="product__content p-relative">
+                                    <div class="product__content-inner">
+                                        <h4><a href="#">{{$item->name}}</a></h4>
+                                        <div class="product__price transition-3">
+                                            <span>{{number_format($item->promotion, 0, '<sup>đ</sup>', '.')}}<sup>đ</sup></span>
+                                            <span class="old-price">{{number_format($item->price, 0, '<sup>đ</sup>', '.')}}<sup>đ</sup></span>
                                         </div>
                                     </div>
-                                    @endforeach
-
+                                    <div class="add-cart p-absolute transition-3">
+                                        <a href="#">+ Add to Cart</a>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        @endforeach
+                    </div>
                         </div>
                         </div>
                     </div>

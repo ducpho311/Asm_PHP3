@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
@@ -76,8 +77,13 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::delete('delete/{size}', [SizeController::class, 'delete'])->name('delete');
     });
 
+
+
+
     
 });
+
+
 
 Route::middleware('guest')->prefix('auth')->name('auth.')->group(function () {
     

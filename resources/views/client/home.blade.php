@@ -408,7 +408,8 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+            {{-- OLDDDDDDDDDDDDDDDDDDDDDDDDd --}}
+            {{-- <div class="container-fluid">
 
                 <div class="row">
                     <div class="col-xl-12">
@@ -463,6 +464,45 @@
                     </div>
                 </div>
 
+            </div> --}}
+            {{-- NEWWWWWWWWWWWWWWWWWWWWWWWWw --}}
+
+            <div class="container-fluid">
+                <div class="product__banner p-relative">
+                    <div class="row">
+                        @foreach($product_list as $item)
+                        <div class="col-xl-3 col-lg-3 col-md-4 col sm-6 col-xs-12">
+                            <div class="product__wrapper mb-60">
+                                <div class="product__thumb">
+                                    <a href="#" class="w-img">
+                                        <img src="{{asset($item->avatar)}}" alt="product-img">
+                                        <img class="product__thumb-2" src="{{asset($item->avatar)}}" alt="product-img">
+                                    </a>
+                                    <div class="product__action transition-3">
+                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
+                                            <i class="fal fa-heart"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="product__content p-relative">
+                                    <div class="product__content-inner">
+                                        <h4><a href="#">{{$item->name}}</a></h4>
+                                        <div class="product__price transition-3">
+                                            <span>{{number_format($item->promotion, 0, '<sup>đ</sup>', '.')}}<sup>đ</sup></span>
+                                            <span class="old-price">{{number_format($item->price, 0, '<sup>đ</sup>', '.')}}<sup>đ</sup></span>
+                                        </div>
+                                    </div>
+                                    <div class="add-cart p-absolute transition-3">
+                                        <a href="#">+ Add to Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="text-center"><a href="#" class="os-btn os-btn-black">View More</a></div>
             </div>
         </section>
         <!-- sale off area end -->
