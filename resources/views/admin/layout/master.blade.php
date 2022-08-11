@@ -240,6 +240,30 @@
             </a>
           </li>
         </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="{{route('admin.comment.list')}}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                  Bình luận
+              </p>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="{{route('admin.contact.list')}}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                  Liên hệ
+              </p>
+            </a>
+          </li>
+        </ul>
       </nav>
       <a style="margin-top: 8px;" class="" href="{{route('logout')}}">Logout</a>
 

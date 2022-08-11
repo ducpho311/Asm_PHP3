@@ -5,32 +5,33 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
     public function index()
     {
-        return view('admin.comment.listComment', [
-            'comments' => Comment::paginate(10),
-        ]);
+        $comment = Comment::select('*')->orderBy('id', 'desc')->with('user')->with('product')->paginate(10);
+        
+        return view('admin.comment.list', ['comment_list' => $comment]);
     }
-    public function create(CommentRequest $request)
+    public function delete(Comment $id)
     {
-        $comment = new Comment();
-
-        $comment->fill($request->all());
-        $comment->id_user = $request->rating;
-        $comment->save();
-        return redirect()->back();
-    }
-    public function delete($id)
-    {
-        if ($id) {
-
-            if (Comment::destroy($id)) {
-
-                return redirect()->route('admin.comment.list-comment');
-            }
+        if ($id->delete()) {
+            return redirect()->back();
         }
     }
+    public function create(CommentRequest $request, $id) {
+        $data = new Comment();
+        $data->content = $request->content;
+        $data->user_id = Auth::user()->id;
+        $data->product_id = $id;
+        // dd($data);
+        $data->save();
+        return redirect()->back();
+    }
+
 }
+
+
+

@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SizeController;
@@ -33,7 +34,13 @@ Route::prefix('')->name('client.')->group(function () {
     Route::get('cart', [ClientController::class, 'cart'])->name('cart');
     Route::get('checkout', [ClientController::class, 'checkout'])->name('checkout');
     Route::get('contact', [ClientController::class, 'contact'])->name('contact');
-    Route::get('/category/{id}', [ClientController::class, 'category'])->name('category');
+    Route::get('category/{id}', [ClientController::class, 'category'])->name('category');
+    Route::post('comment/{id}', [CommentController::class, 'create'])->name('comment');
+    Route::post('contact', [ContactController::class, 'create'])->name('contact');
+    
+
+    
+
  
 });
 
@@ -77,11 +84,23 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         Route::delete('delete/{size}', [SizeController::class, 'delete'])->name('delete');
     });
 
+    Route::prefix('comment')->name('comment.')->group(function () {
+        Route::get('list', [CommentController::class, 'index'])->name('list');
+        Route::delete('delete/{id}', [CommentController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('contact')->name('contact.')->group(function () {
+        Route::get('list', [ContactController::class, 'index'])->name('list');
+        Route::delete('delete/{id}', [ContactController::class, 'delete'])->name('delete');
+    });
+
 
 
 
     
 });
+
+
 
 
 

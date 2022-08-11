@@ -12,7 +12,7 @@
                                 <div class="nav nav-tabs" id="product-details" role="tablist">
                                     <a class="item nav-link " id="pro--tab" data-toggle="tab" href="" role="tab" aria-controls="pro-" aria-selected="true">
                                         <div class=" w-img">
-                                            <img  src="{{asset($productDetail->avatar)}}"  alt="">
+                                            <img src="{{asset($productDetail->avatar)}}"  alt="">
                                         </div>
                                     </a>
                                 </div>
@@ -49,6 +49,12 @@
                                         <span>{{$productDetail->size->name}}</span>
                                     </div>
                                 </div>
+                                <div class="tab-pane fade active show" id="des" role="tabpanel">
+                                    <div class="product__details-des">
+                                        <h5><a href="">Chi tiết</a></h5>
+                                        <p>{{$productDetail->description}} </p>    
+                                    </div>
+                                </div>
                     
                                 <div class="pro-quan-area d-sm-flex align-items-center">
                                     <div class="product-quantity-title">
@@ -63,6 +69,7 @@
                                 </div>
                             </form>
                         </div>
+                       
                         <div class="product__tag mb-25">
                             <span>Danh mục:</span>
                             <span><a href="{{route('client.category', $productDetail->category->id)}}">{{$productDetail->category->name}}</a></span>
@@ -81,63 +88,66 @@
                         <div class="product__details-tab-nav text-center mb-45">
                             <nav>
                                 <div class="nav nav-tabs justify-content-start justify-content-sm-center" id="pro-details" role="tablist">
-                                    <a class="nav-item nav-link active" id="des-tab" data-toggle="tab" href="#des" role="tab" aria-controls="des" aria-selected="true">Mô tả</a>
+                                    {{-- <a class="nav-item nav-link active" id="des-tab" data-toggle="tab" href="#des" role="tab" aria-controls="des" aria-selected="true">Mô tả</a> --}}
                                     <a class="nav-item nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Đánh giá</a>
                                 </div>
                             </nav>
                         </div>
                         <div class="tab-content" id="pro-detailsContent">
-                            <div class="tab-pane fade active show" id="des" role="tabpanel">
-                                <div class="product__details-des">
-                                    <p>{{$productDetail->description}} </p>    
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="review" role="tabpanel">
-                                <div class="product__details-review">
-                                    <div class="postbox__comments">
-                                        <div class="postbox__comment-title mb-30">
-                                            <h3>Đánh giá</h3>
-                                        </div>
-                                        <div class="latest-comments mb-30">
-                                            <ul>
-                                                <li>
-                                                    <div class="comments-box">
-                                                        <div class="comments-avatar">
-                                                            <img src="assets/img/blog/comments/avater-1.png" alt="">
-                                                        </div>
-                                                        <div class="comments-text">
-                                                            <div class="avatar-name">
-                                                                <h5>Abc</h5>
-                                                                <span> Thời gian </span>
-                                                            </div>
-
-                                                            <p>Bình luận sản phẩm</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-  
-                                    
-                                            </ul>
-                                        </div>
+                            <div class="product__details-review">
+                                <div class="postbox__comments">
+                                    <div class="postbox__comment-title mb-30">
+                                        <h3>Đánh giá</h3>
                                     </div>
-                                    <div class="post-comments-form mb-100">
-                                        <div class="post-comments-title mb-30">
-                                            <h3>Đánh giá của bạn</h3>
-                                        </div>
-                                        <form id="contacts-form" class="conatct-post-form" action="" method="POST">
-                                            @csrf
-                                            <div class="row">
-                                                <div class="col-xl-12">
-                                                    <div class="contact-icon p-relative contacts-message">
-                                                        <textarea name="comments" id="comments" cols="30" rows="10" placeholder="Bình luận"></textarea>
+                                    <div class="latest-comments mb-30">
+                                        <ul>
+                                            <li>
+                                                @foreach($comment_list as $comment)
+                                                <div class="comments-box">
+                                                    <div class="comments-avatar">
+                                                        <img src="assets/img/blog/comments/avater-1.png" alt="">
+                                                    </div>
+                                                    <div class="comments-text">
+                                                        <div class="avatar-name">
+                                                            <h5>{{$comment->user->name}}</h5>
+                                                            <span> {{$comment->created_at}} </span>
+                                                        </div>
+                                                        <p>{{$comment->content}}</p>
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-12">
-                                                    <button class="os-btn os-btn-black" type="submit">Đăng bình luận</button>
+                                                @endforeach
+                                            </li>
+
+                                
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="post-comments-form mb-100">
+                                    <div class="post-comments-title mb-30">
+                                        <h3>Đánh giá của bạn</h3>
+                                    </div>
+                                    @if(Auth::user())
+                                    <form id="contacts-form" class="conatct-post-form" action="{{route('client.comment', $productDetail->id)}}" method="POST">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="contact-icon p-relative contacts-message">
+                                                    <textarea name="content" cols="30" rows="10" placeholder="Bình luận"></textarea>
+                                                    
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                            <div class="col-xl-12">
+                                                <button class="os-btn os-btn-black" type="submit">Đăng bình luận</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    @else
+                                        <span>Bạn cần đăng nhập để bình luận sản phẩm này !</span>
+                                    @endif
+                                </div>
+                            <div class="tab-pane fade" id="review" role="tabpanel">
+                                
+                                    
                                 </div>
                             </div>
                         </div>

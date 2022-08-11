@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6">
                 <div class="contact__info">
-                    <h3> Tìm chúng tôi ở đây</h3>
+                    <h3> Tìm chúng tôi ở đây </h3>
                     <ul class="mb-55">
                         <li class="d-flex mb-35">
                             <div class="contact__info-icon mr-20">
@@ -43,18 +43,25 @@
             <div class="col-xl-6 col-lg-6">
                 <div class="contact__form">
                     <h3>Liên hệ với chúng tôi</h3>
-                    <form action="" id="contact-form">
+                    <form action="{{route('client.contact')}}" method="POST" id="contact-form">
+                        @csrf
                         <div class="row">
                             <div class="col-xl-6 col-lg-6">
                                 <div class="contact__input">
                                     <label>Họ tên <span class="required">*</span></label>
-                                    <input type="text">
+                                    <input type="text" name="name">
+                                    @if ($errors->has('name'))
+                                                    <span class="text-danger text-sm"> {{ $errors->first('name') }}</span>
+                                                  @endif
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6">
                                 <div class="contact__input">
                                     <label>Email <span class="required">*</span></label>
-                                    <input type="email">
+                                    <input type="text" name="email">
+                                    @if ($errors->has('email'))
+                                                    <span class="text-danger text-sm"> {{ $errors->first('email') }}</span>
+                                                  @endif
                                 </div>
                             </div>
                         </div>
@@ -62,7 +69,10 @@
                             <div class="col-xl-12">
                                 <div class="contact__input">
                                     <label>Số điện thoại <span class="required">*</span></label>
-                                    <input type="text">
+                                    <input type="number" name="phone">
+                                    @if ($errors->has('phone'))
+                                                    <span class="text-danger text-sm"> {{ $errors->first('phone') }}</span>
+                                                  @endif
                                 </div>
                             </div>
                         </div>
@@ -70,19 +80,22 @@
                             <div class="col-xl-12">
                                 <div class="contact__input">
                                     <label>Nội dung</label>
-                                    <textarea cols="30" rows="10"></textarea>
+                                    <textarea cols="30" rows="10" name="content"></textarea>
+                                    @if ($errors->has('content'))
+                                                    <span class="text-danger text-sm"> {{ $errors->first('content') }}</span>
+                                                  @endif
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="contact__submit">
-                                    <button type="submit" class="os-btn os-btn-black">Gửi </button>
+                                    <button type="submit" class="os-btn os-btn-black">Gửi</button>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <p class="ajax-response"></p>
+                   
                 </div>
             </div>
         </div>

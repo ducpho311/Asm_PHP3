@@ -61,4 +61,8 @@
       </tr>
       @endforeach
   </table>
+  <div class="">
+  {{ $product_list->links() }}
+
+  </div>
 @endsection
